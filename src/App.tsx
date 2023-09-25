@@ -1,7 +1,6 @@
-import React from "react";
 import "./App.css";
 import Navbar from "./components/navbar";
-import { ThemeProvider, createTheme, useTheme } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./theme";
 import MainPage from "./pages/main";

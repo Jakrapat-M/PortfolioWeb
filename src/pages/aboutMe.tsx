@@ -1,6 +1,5 @@
 import { Center } from "@chakra-ui/react";
-import { Container, Typography } from "@mui/material";
-import React from "react";
+import { Typography } from "@mui/material";
 
 const AboutMe = () => {
   return (
