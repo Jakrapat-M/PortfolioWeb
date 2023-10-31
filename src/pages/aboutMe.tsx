@@ -15,13 +15,13 @@ const AboutMe = () => {
             <img
               alt="profile"
               src="../src/assets/cat.jpg"
-              className="rounded-full w-72 h-72 shadow-2xl shadow-cyan-500/50"
+              className="rounded-full w-72 h-72 shadow-2xl shadow-black-500"
             />
           </Center>
         </Grid>
         <Grid xs={1}></Grid>
         <Grid xs={12} md={6} justifySelf={"center"} alignSelf={"center"}>
-          <Typography variant="h5" className="animate-pulse text-cyan-300">
+          <Typography variant="h5" className="animate-pulse text-white-300">
             Jakrapat Matures
           </Typography>
           <Typography>
