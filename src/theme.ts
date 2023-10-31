@@ -6,8 +6,8 @@ const theme = extendTheme({
       body: {
         background: `linear-gradient(135deg, ${
           props.colorMode === "dark"
-            ? "rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.4)"
-            : "rgba(249, 249, 249, 0.6), rgba(249, 249, 249, 0.4)"
+            ? "#020203, #2f2b34"
+            : "#ffffe4, #f9f9f9"
         })`,
       },
     }),
