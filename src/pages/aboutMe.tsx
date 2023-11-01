@@ -1,5 +1,5 @@
-import { Center, Container, Img, VStack } from "@chakra-ui/react";
-import { Typography, Grid, Avatar, Stack } from "@mui/material";
+import { Center } from "@chakra-ui/react";
+import { Typography, Grid } from "@mui/material";
 
 const AboutMe = () => {
   return (
