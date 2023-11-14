@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Flex,
@@ -23,6 +24,8 @@ import {
   MoonIcon,
   SunIcon,
 } from "@chakra-ui/icons";
+import { Link as ScrollLink } from "react-scroll";
+import { animateScroll as scroll } from "react-scroll";
 
 const NAV_ITEMS: Array<NavItem> = [
   {
@@ -31,12 +34,12 @@ const NAV_ITEMS: Array<NavItem> = [
       {
         label: "About Me",
         subLabel: "",
-        href: "#aboutMe",
+        href: "aboutMe",
       },
       {
         label: "Education",
         subLabel: "",
-        href: "#education",
+        href: "education",
       },
     ],
   },
@@ -50,7 +53,7 @@ const NAV_ITEMS: Array<NavItem> = [
   },
 ];
 
-export default function WithSubnavigation() {
+const WithSubnavigation = () => {
   const { isOpen, onToggle } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
 
@@ -112,31 +115,26 @@ export default function WithSubnavigation() {
       </Collapse>
     </Box>
   );
-}
+};
 
 const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
-  const linkHoverColor = useColorModeValue("gray.800", "white");
 
   return (
     <Stack direction={"row"} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
-            <PopoverTrigger>
-              <Box
-                as="a"
-                p={2}
-                href={navItem.href}
-                fontSize={"sm"}
-                fontWeight={500}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
-                }}
+            <PopoverTrigger><Box>
+              <ScrollLink
+                to={navItem.href || ""}
+                smooth={true}
+                duration={500}
+                offset={0}
+                style={{ textDecoration: "none", color: linkColor }}
               >
                 {navItem.label}
+              </ScrollLink>
               </Box>
             </PopoverTrigger>
 
@@ -165,39 +163,46 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
-    <Box
-      as="a"
-      href={href}
-      role={"group"}
-      display={"block"}
-      p={2}
-      rounded={"md"}
-      _hover={{ bg: useColorModeValue("red.50", "gray.900") }}
+    <ScrollLink
+      to={href || ""}
+      smooth={true}
+      duration={500}
+      offset={-60}
+      style={{ textDecoration: "none", color: "inherit" }}
     >
-      <Stack direction={"row"} align={"center"}>
-        <Box>
-          <Text
+      <Box
+        as="a"
+        role={"group"}
+        display={"block"}
+        p={2}
+        rounded={"md"}
+        _hover={{ bg: useColorModeValue("red.50", "gray.900") }}
+      >
+        <Stack direction={"row"} align={"center"}>
+          <Box>
+            <Text
+              transition={"all .3s ease"}
+              _groupHover={{ color: "red.400" }}
+              fontWeight={500}
+            >
+              {label}
+            </Text>
+            <Text fontSize={"sm"}>{subLabel}</Text>
+          </Box>
+          <Flex
             transition={"all .3s ease"}
-            _groupHover={{ color: "red.400" }}
-            fontWeight={500}
+            transform={"translateX(-10px)"}
+            opacity={0}
+            _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
+            justify={"flex-end"}
+            align={"center"}
+            flex={1}
           >
-            {label}
-          </Text>
-          <Text fontSize={"sm"}>{subLabel}</Text>
-        </Box>
-        <Flex
-          transition={"all .3s ease"}
-          transform={"translateX(-10px)"}
-          opacity={0}
-          _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
-          justify={"flex-end"}
-          align={"center"}
-          flex={1}
-        >
-          <Icon color={"red.400"} w={5} h={5} as={ChevronRightIcon} />
-        </Flex>
-      </Stack>
-    </Box>
+            <Icon color={"red.400"} w={5} h={5} as={ChevronRightIcon} />
+          </Flex>
+        </Stack>
+      </Box>
+    </ScrollLink>
   );
 };
 
@@ -222,6 +227,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     <Stack spacing={4} onClick={children && onToggle}>
       <Box
         py={2}
+        role="group"
         as="a"
         href={href ?? "#"}
         justifyContent="space-between"
@@ -274,3 +280,5 @@ interface NavItem {
   children?: Array<NavItem>;
   href?: string;
 }
+
+export default WithSubnavigation;

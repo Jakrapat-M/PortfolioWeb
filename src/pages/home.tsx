@@ -9,7 +9,7 @@ const HomePage = () => {
           align="center"
           alignContent="center"
           alignItems="center"
-          variant="h3"
+          variant="h4"
         >
           Hello There
         </Typography>
