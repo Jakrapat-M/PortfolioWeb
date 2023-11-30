@@ -1,10 +1,8 @@
 // ProjectDetailPage.tsx
-import { Center, Container, Grid } from "@chakra-ui/react";
-import React from "react";
+import { Center } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import ProjectCard from "../components/projectCard";
 import { projectData } from "../data/projectData";
-import { Typography } from "@mui/material";
+import ProjectCard from "../components/projectCard";
 
 const ProjectDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -24,18 +22,16 @@ const ProjectDetailPage = () => {
           height: "100vh",
         }}
           >
-              <Typography variant="h4" gutterBottom>
-                  Project Detail Page
-              </Typography>
               
-        {/* <ProjectCard
+              
+        <ProjectCard
           key={projectDetails!.id}
           id={projectDetails!.id}
           title={projectDetails!.title}
           description={projectDetails!.description}
           imageUrl={projectDetails!.imageUrl}
           tools={projectDetails!.tools}
-        /> */}
+        />
       </div>
     </Center>
   );

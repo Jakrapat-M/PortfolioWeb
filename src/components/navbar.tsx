@@ -132,7 +132,7 @@ const DesktopNav = () => {
             <PopoverTrigger>
               <Box>
                 <ScrollLink
-                  to= {navItem.href || ""}
+                  to={navItem.href || ""}
                   smooth={true}
                   duration={500}
                   offset={0}
@@ -224,7 +224,7 @@ const MobileNav = () => {
   );
 };
 
-const MobileNavItem = ({ label, children, href }: NavItem) => {
+const MobileNavItem = ({ label, children }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (

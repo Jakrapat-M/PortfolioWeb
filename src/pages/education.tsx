@@ -1,5 +1,5 @@
-import { Center, Container, useColorModeValue } from "@chakra-ui/react";
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import { Center, Container } from "@chakra-ui/react";
+import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 
 interface EducationBoxProps {

@@ -1,4 +1,4 @@
-import { Container, Grid, Box, Image, Text } from "@chakra-ui/react";
+import { Container, Grid } from "@chakra-ui/react";
 import { projectData } from "../data/projectData";
 import ProjectCard from "../components/projectCard";
 
