@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Flex,
@@ -25,7 +24,6 @@ import {
   SunIcon,
 } from "@chakra-ui/icons";
 import { Link as ScrollLink } from "react-scroll";
-import { animateScroll as scroll } from "react-scroll";
 
 const NAV_ITEMS: Array<NavItem> = [
   {
@@ -45,7 +43,7 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: "Project",
-    href: "#",
+    href: "project",
   },
   {
     label: "Contact",
@@ -58,7 +56,13 @@ const WithSubnavigation = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Box as="nav" zIndex={100} position="fixed" width={"100%"}>
+    <Box
+      as="nav"
+      zIndex={100}
+      position="fixed"
+      width={"100%"}
+      backdropFilter="blur(10px)"
+    >
       <Flex
         bg=""
         color={useColorModeValue("gray.600", "white")}
@@ -125,16 +129,17 @@ const DesktopNav = () => {
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
-            <PopoverTrigger><Box>
-              <ScrollLink
-                to={navItem.href || ""}
-                smooth={true}
-                duration={500}
-                offset={0}
-                style={{ textDecoration: "none", color: linkColor }}
-              >
-                {navItem.label}
-              </ScrollLink>
+            <PopoverTrigger>
+              <Box>
+                <ScrollLink
+                  to= {navItem.href || ""}
+                  smooth={true}
+                  duration={500}
+                  offset={0}
+                  style={{ textDecoration: "none", color: linkColor }}
+                >
+                  {navItem.label}
+                </ScrollLink>
               </Box>
             </PopoverTrigger>
 
@@ -171,7 +176,6 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
       style={{ textDecoration: "none", color: "inherit" }}
     >
       <Box
-        as="a"
         role={"group"}
         display={"block"}
         p={2}
@@ -228,8 +232,6 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
       <Box
         py={2}
         role="group"
-        as="a"
-        href={href ?? "#"}
         justifyContent="space-between"
         alignItems="center"
         _hover={{
@@ -264,9 +266,18 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         >
           {children &&
             children.map((child) => (
-              <Box as="a" key={child.label} py={2} href={child.href}>
-                {child.label}
-              </Box>
+              <ScrollLink
+                to={child.href || ""}
+                key={child.label}
+                smooth={true}
+                duration={500}
+                offset={-60}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <Box key={child.label} py={2}>
+                  {child.label}
+                </Box>
+              </ScrollLink>
             ))}
         </Stack>
       </Collapse>

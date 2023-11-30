@@ -4,8 +4,13 @@ import { Typography, Grid } from "@mui/material";
 const AboutMe = () => {
   return (
     <Center id="aboutMe" height={"100vh"}>
-      <Grid justifyContent={"center"} alignContent={"center"} container>
-        <Grid xs={12} md={4}>
+      <Grid
+        justifyContent={"center"}
+        alignContent={"center"}
+        container
+        rowSpacing={2}
+      >
+        <Grid item xs={12} md={4}>
           <Center>
             <img
               alt="profile"
@@ -14,8 +19,8 @@ const AboutMe = () => {
             />
           </Center>
         </Grid>
-        <Grid xs={1}></Grid>
-        <Grid xs={12} md={6} justifySelf={"center"} alignSelf={"center"}>
+        <Grid item xs={1}></Grid>
+        <Grid item xs={12} md={6} justifySelf={"center"} alignSelf={"center"}>
           <Center>
             <Typography variant="h5" className="animate-pulse text-white-300">
               Jakrapat Matures
